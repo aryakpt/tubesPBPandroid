@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import './detail.dart';
-import './kategori.dart';
 
 void main() {
   runApp(new MaterialApp(
@@ -29,15 +28,14 @@ class _HomeState extends State<Home> {
     return new Scaffold(
       appBar: new AppBar(
         backgroundColor: Colors.yellow[800],
-        leading: new IconButton(
-          icon: new Icon(Icons.category),
-          onPressed: () {
-            Navigator.of(context).push(new MaterialPageRoute(
-                builder: (BuildContext context) => new Kategori()));
-          },
-        ),
+        leading: new Icon(Icons.home),
         title: new Center(child: Text("Aurora")),
-        actions: <Widget>[new Icon(Icons.search)],
+        IconButton(
+          onPressed: (){
+              showSearch(context: context, delegate:Search());
+          },
+          icon: Icon(Icons.search),
+        )
       ),
       body: new FutureBuilder<List>(
         future: getData(),
