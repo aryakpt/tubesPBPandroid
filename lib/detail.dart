@@ -44,12 +44,12 @@ class _DetailState extends State<Detail> {
                         style: new TextStyle(fontSize: 12)),
                   ),
                 )),
-                new Card(
-                    child: new Container(
-                  child: ListTile(
-                      subtitle:
-                          new Text(widget.list[widget.index]['komentar'])),
-                ))
+                // new Card(
+                //     child: new Container(
+                //   child: ListTile(
+                //       subtitle:
+                //           new Text(widget.list[widget.index]['komentar'])),
+                // ))
               ],
             )));
   }
