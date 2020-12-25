@@ -15,7 +15,7 @@ class DetailKategori extends StatefulWidget {
 class _DetailKategoriState extends State<DetailKategori> {
   Future<List> getDetailKategori() async {
     final response = await http
-        .get("http://10.0.2.2//WebDinamis/webservices/get_recent_post.php");
+        .get("http://10.0.2.2//WebDinamis/webservices/get_detailkategori.php");
     return json.decode(response.body);
   }
 

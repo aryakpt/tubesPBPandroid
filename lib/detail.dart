@@ -16,34 +16,30 @@ class _DetailState extends State<Detail> {
             backgroundColor: Colors.yellow[800],
             title: new Text("${widget.list[widget.index]['judul']}")),
         body: new Container(
-            padding: const EdgeInsets.all(10),
-            child: new Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Center(
+          child: new Card(
+            child: new ListView(
+              padding: const EdgeInsets.all(10),
               children: <Widget>[
+                //Image.network(
+                // "/data:image/jpeg;base64${widget.list[widget.index]['gambar']}"),
                 new Container(
-                    child: new Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                      new Padding(padding: const EdgeInsets.only(top: 5)),
-                      new Padding(padding: const EdgeInsets.only(bottom: 10)),
-                      new Text("${widget.list[widget.index]['judul']}",
-                          style: new TextStyle(fontSize: 18)),
-                      new Text(
-                          "Penulis : ${widget.list[widget.index]['penulis']}",
-                          style: new TextStyle(fontSize: 14)),
-                      new Text(
-                          "Dipost pada: ${widget.list[widget.index]['tgl']}",
-                          style: new TextStyle(fontSize: 14)),
-                    ])),
+                    child: new Column(children: <Widget>[
+                  new Padding(padding: const EdgeInsets.only(top: 5)),
+                  new Padding(padding: const EdgeInsets.only(bottom: 10)),
+                  new Text(widget.list[widget.index]['judul'],
+                      textAlign: TextAlign.center,
+                      style: new TextStyle(fontSize: 18)),
+                  new Text("Penulis : ${widget.list[widget.index]['penulis']}",
+                      style: new TextStyle(fontSize: 14)),
+                  new Text("Dipost pada: ${widget.list[widget.index]['tgl']}",
+                      style: new TextStyle(fontSize: 14)),
+                ])),
                 new Padding(padding: const EdgeInsets.only(top: 10)),
                 new Container(
-                    child: new Flexible(
-                  child: new SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: new Text(widget.list[widget.index]['isi'],
-                        style: new TextStyle(fontSize: 12)),
-                  ),
-                )),
+                  child: new Text(widget.list[widget.index]['isi'],
+                      style: new TextStyle(fontSize: 12)),
+                ),
                 // new Card(
                 //     child: new Container(
                 //   child: ListTile(
@@ -51,6 +47,8 @@ class _DetailState extends State<Detail> {
                 //           new Text(widget.list[widget.index]['komentar'])),
                 // ))
               ],
-            )));
+            ),
+          ),
+        )));
   }
 }
