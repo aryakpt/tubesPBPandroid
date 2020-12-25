@@ -18,6 +18,21 @@ class _DetailState extends State<Detail> {
     return json.decode(response.body);
   }
 
+  Widget widgetFutureBuilder() {
+    return FutureBuilder<List>(
+      future: getKomen(),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) print(snapshot.error);
+        return snapshot.hasData
+            ? new DetailKomen(
+                list: snapshot.data, id: widget.list[widget.index]['id'])
+            : new Center(
+                child: new CircularProgressIndicator(),
+              );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -48,20 +63,7 @@ class _DetailState extends State<Detail> {
                   child: new Text(widget.list[widget.index]['isi'],
                       style: new TextStyle(fontSize: 12)),
                 ),
-                new Container(
-                    child: new FutureBuilder<List>(
-                  future: getKomen(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasError) print(snapshot.error);
-                    return snapshot.hasData
-                        ? new DetailKomen(
-                            list: snapshot.data,
-                            id: widget.list[widget.index]['id'])
-                        : new Center(
-                            child: new CircularProgressIndicator(),
-                          );
-                  },
-                ))
+                widgetFutureBuilder(),
               ],
             ),
           ),
@@ -85,7 +87,7 @@ class DetailKomen extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(5),
                 child: new ListTile(
-                  title: new Text('ASU'),
+                  title: new Text(list[i]['komentar']),
                 ),
               ),
             ),
