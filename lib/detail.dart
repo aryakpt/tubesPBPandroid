@@ -18,20 +18,20 @@ class _DetailState extends State<Detail> {
     return json.decode(response.body);
   }
 
-  Widget widgetFutureBuilder() {
-    return FutureBuilder<List>(
-      future: getKomen(),
-      builder: (context, snapshot) {
-        if (snapshot.hasError) print(snapshot.error);
-        return snapshot.hasData
-            ? new DetailKomen(
-                list: snapshot.data, id: widget.list[widget.index]['id'])
-            : new Center(
-                child: new CircularProgressIndicator(),
-              );
-      },
-    );
-  }
+  // Widget widgetFutureBuilder() {
+  //   return FutureBuilder<List>(
+  //     future: getKomen(),
+  //     builder: (context, snapshot) {
+  //       if (snapshot.hasError) print(snapshot.error);
+  //       return snapshot.hasData
+  //           ? new DetailKomen(
+  //               list: snapshot.data, id: widget.list[widget.index]['id'])
+  //           : new Center(
+  //               child: new CircularProgressIndicator(),
+  //             );
+  //     },
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +63,19 @@ class _DetailState extends State<Detail> {
                   child: new Text(widget.list[widget.index]['isi'],
                       style: new TextStyle(fontSize: 12)),
                 ),
-                widgetFutureBuilder(),
+                new FutureBuilder<List>(
+                  future: getKomen(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) print(snapshot.error);
+                    return snapshot.hasData
+                        ? new DetailKomen(
+                            list: snapshot.data,
+                            id: widget.list[widget.index]['id'])
+                        : new Center(
+                            child: new CircularProgressIndicator(),
+                          );
+                  },
+                ),
               ],
             ),
           ),
