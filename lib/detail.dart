@@ -39,8 +39,7 @@ class _DetailState extends State<Detail> {
         appBar: new AppBar(
             backgroundColor: Colors.yellow[800],
             title: new Text("${widget.list[widget.index]['judul']}")),
-        body: new Container(
-            child: Center(
+        body: Center(
           child: new Card(
             child: new ListView(
               padding: const EdgeInsets.all(10),
@@ -79,7 +78,7 @@ class _DetailState extends State<Detail> {
               ],
             ),
           ),
-        )));
+        ));
   }
 }
 
@@ -90,6 +89,7 @@ class DetailKomen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new ListView.builder(
+      shrinkWrap: true,
       itemCount: list == null ? 0 : list.length,
       itemBuilder: (context, i) {
         if (list[i]['id'] == id) {
