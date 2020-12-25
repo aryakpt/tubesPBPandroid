@@ -3,22 +3,17 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import './detail.dart';
-import './kategori.dart';
 
-void main() {
-  runApp(new MaterialApp(
-    title: "Aurora",
-    home: new Home(),
-  ));
-}
-
-class Home extends StatefulWidget {
+class DetailKategori extends StatefulWidget {
+  List list;
+  int index;
+  DetailKategori({this.index, this.list});
   @override
-  _HomeState createState() => new _HomeState();
+  _DetailKategoriState createState() => _DetailKategoriState();
 }
 
-class _HomeState extends State<Home> {
-  Future<List> getData() async {
+class _DetailKategoriState extends State<DetailKategori> {
+  Future<List> getDetailKategori() async {
     final response = await http
         .get("http://10.0.2.2//WebDinamis/webservices/get_recent_post.php");
     return json.decode(response.body);
@@ -29,22 +24,14 @@ class _HomeState extends State<Home> {
     return new Scaffold(
       appBar: new AppBar(
         backgroundColor: Colors.yellow[800],
-        leading: new IconButton(
-          icon: new Icon(Icons.category),
-          onPressed: () {
-            Navigator.of(context).push(new MaterialPageRoute(
-                builder: (BuildContext context) => new Kategori()));
-          },
-        ),
-        title: new Center(child: Text("Aurora")),
-        actions: <Widget>[new Icon(Icons.search)],
+        title: new Text("${widget.list[widget.index]['namakategori']}"),
       ),
       body: new FutureBuilder<List>(
-        future: getData(),
+        future: getDetailKategori(),
         builder: (context, snapshot) {
           if (snapshot.hasError) print(snapshot.error);
           return snapshot.hasData
-              ? new ItemList(list: snapshot.data)
+              ? new DetailListKategori(list: snapshot.data)
               : new Center(
                   child: new CircularProgressIndicator(),
                 );
@@ -54,9 +41,9 @@ class _HomeState extends State<Home> {
   }
 }
 
-class ItemList extends StatelessWidget {
+class DetailListKategori extends StatelessWidget {
   final List list;
-  ItemList({this.list});
+  DetailListKategori({this.list});
   @override
   Widget build(BuildContext context) {
     return new ListView.builder(
@@ -78,7 +65,6 @@ class ItemList extends StatelessWidget {
                   leading: new Icon(Icons.book),
                   subtitle: new Text(
                       "Penulis : ${list[i]['penulis']}\nDipost pada : ${list[i]['tgl']}"),
-                  //subtitle: new Text("Dipost pada : ${list[i]['tgl_insert']}"),
                 ),
               ),
             ),
