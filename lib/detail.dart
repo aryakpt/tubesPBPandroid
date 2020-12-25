@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
 
 class Detail extends StatefulWidget {
   List list;
@@ -22,7 +21,8 @@ class _DetailState extends State<Detail> {
             child: new ListView(
               padding: const EdgeInsets.all(10),
               children: <Widget>[
-                Image.memory(base64Decode(widget.list[widget.index]['gambar'])),
+                //Image.network(
+                // "/data:image/jpeg;base64${widget.list[widget.index]['gambar']}"),
                 new Container(
                     child: new Column(children: <Widget>[
                   new Padding(padding: const EdgeInsets.only(top: 5)),
