@@ -14,8 +14,8 @@ class DetailKategori extends StatefulWidget {
 
 class _DetailKategoriState extends State<DetailKategori> {
   Future<List> getDetailKategori() async {
-    final response = await http
-        .get("http://10.0.2.2//WebDinamis/webservices/get_recent_post.php");
+    final response =
+        await http.get("http://10.0.2.2//WebDinamis/webservices/get_post.php");
     return json.decode(response.body);
   }
 
@@ -31,7 +31,9 @@ class _DetailKategoriState extends State<DetailKategori> {
         builder: (context, snapshot) {
           if (snapshot.hasError) print(snapshot.error);
           return snapshot.hasData
-              ? new DetailListKategori(list: snapshot.data)
+              ? new DetailListKategori(
+                  list: snapshot.data,
+                  title: widget.list[widget.index]['idkategori'])
               : new Center(
                   child: new CircularProgressIndicator(),
                 );
@@ -43,33 +45,36 @@ class _DetailKategoriState extends State<DetailKategori> {
 
 class DetailListKategori extends StatelessWidget {
   final List list;
-  DetailListKategori({this.list});
+  final title;
+  DetailListKategori({this.list, this.title});
   @override
   Widget build(BuildContext context) {
     return new ListView.builder(
       itemCount: list == null ? 0 : list.length,
       itemBuilder: (context, i) {
-        return Container(
-          padding: const EdgeInsets.all(1),
-          child: GestureDetector(
-            onTap: () => Navigator.of(context).push(new MaterialPageRoute(
-                builder: (BuildContext context) => new Detail(
-                      list: list,
-                      index: i,
-                    ))),
-            child: new Card(
-              child: Container(
-                padding: const EdgeInsets.all(5),
-                child: new ListTile(
-                  title: new Text(list[i]['judul']),
-                  leading: new Icon(Icons.book),
-                  subtitle: new Text(
-                      "Penulis : ${list[i]['penulis']}\nDipost pada : ${list[i]['tgl']}"),
+        if (list[i]['idkategori'] == title) {
+          return Container(
+            padding: const EdgeInsets.all(1),
+            child: GestureDetector(
+              onTap: () => Navigator.of(context).push(new MaterialPageRoute(
+                  builder: (BuildContext context) => new Detail(
+                        list: list,
+                        index: i,
+                      ))),
+              child: new Card(
+                child: Container(
+                  padding: const EdgeInsets.all(5),
+                  child: new ListTile(
+                    title: new Text(list[i]['judul']),
+                    leading: new Icon(Icons.book),
+                    subtitle: new Text(
+                        "Penulis : ${list[i]['penulis']}\nDipost pada : ${list[i]['tgl']}"),
+                  ),
                 ),
               ),
             ),
-          ),
-        );
+          );
+        }
       },
     );
   }
