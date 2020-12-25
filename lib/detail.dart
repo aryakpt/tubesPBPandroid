@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'dart:async';
 
 class Detail extends StatefulWidget {
   List list;
@@ -10,6 +12,12 @@ class Detail extends StatefulWidget {
 }
 
 class _DetailState extends State<Detail> {
+  Future<List> getKomen() async {
+    final response =
+        await http.get("http://10.0.2.2//WebDinamis/webservices/get_komen.php");
+    return json.decode(response.body);
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -40,15 +48,52 @@ class _DetailState extends State<Detail> {
                   child: new Text(widget.list[widget.index]['isi'],
                       style: new TextStyle(fontSize: 12)),
                 ),
-                // new Card(
-                //     child: new Container(
-                //   child: ListTile(
-                //       subtitle:
-                //           new Text(widget.list[widget.index]['komentar'])),
-                // ))
+                new Container(
+                    child: new FutureBuilder<List>(
+                  future: getKomen(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) print(snapshot.error);
+                    return snapshot.hasData
+                        ? new DetailKomen(
+                            list: snapshot.data,
+                            id: widget.list[widget.index]['id'])
+                        : new Center(
+                            child: new CircularProgressIndicator(),
+                          );
+                  },
+                ))
               ],
             ),
           ),
         )));
+  }
+}
+
+class DetailKomen extends StatelessWidget {
+  final List list;
+  final id;
+  DetailKomen({this.list, this.id});
+  @override
+  Widget build(BuildContext context) {
+    return new ListView.builder(
+      itemCount: list == null ? 0 : list.length,
+      itemBuilder: (context, i) {
+        if (list[i]['id'] == id) {
+          return Container(
+            padding: const EdgeInsets.all(1),
+            child: new Card(
+              child: Container(
+                padding: const EdgeInsets.all(5),
+                child: new ListTile(
+                  title: new Text('ASU'),
+                ),
+              ),
+            ),
+          );
+        } else {
+          return Container();
+        }
+      },
+    );
   }
 }
