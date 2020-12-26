@@ -62,6 +62,8 @@ class _DetailState extends State<Detail> {
                   child: new Text(widget.list[widget.index]['isi'],
                       style: new TextStyle(fontSize: 12)),
                 ),
+                new Padding(padding: const EdgeInsets.only(bottom: 10)),
+                new Text("KOMENTAR :"),
                 new FutureBuilder<List>(
                   future: getKomen(),
                   builder: (context, snapshot) {
@@ -94,12 +96,13 @@ class DetailKomen extends StatelessWidget {
       itemBuilder: (context, i) {
         if (list[i]['id'] == id) {
           return Container(
-            padding: const EdgeInsets.all(1),
+            //padding: const EdgeInsets.all(1),
             child: new Card(
               child: Container(
-                padding: const EdgeInsets.all(5),
-                child: new ListTile(
-                  title: new Text(list[i]['komentar']),
+                child: new Container(
+                  padding: const EdgeInsets.all(8),
+                  child: new Text(list[i]['komentar'],
+                      style: new TextStyle(fontSize: 12)),
                 ),
               ),
             ),

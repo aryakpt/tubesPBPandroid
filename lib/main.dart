@@ -36,19 +36,36 @@ class _HomeState extends State<Home> {
                 builder: (BuildContext context) => new Kategori()));
           },
         ),
-        title: new Center(child: Text("Aurora")),
-        actions: <Widget>[new Icon(Icons.search)],
+        title: new Text("Aurora", style: new TextStyle(fontSize: 24)),
+        actions: <Widget>[
+          new IconButton(
+            icon: new Icon(Icons.search),
+            onPressed: () {
+              Navigator.of(context).push(new MaterialPageRoute(
+                  builder: (BuildContext context) => new Kategori()));
+            },
+          )
+        ],
       ),
-      body: new FutureBuilder<List>(
-        future: getData(),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) print(snapshot.error);
-          return snapshot.hasData
-              ? new ItemList(list: snapshot.data)
-              : new Center(
-                  child: new CircularProgressIndicator(),
-                );
-        },
+      body: Container(
+        child: Column(
+          children: [
+            new Padding(padding: const EdgeInsets.only(top: 15)),
+            new Text("Recent Post :", style: new TextStyle(fontSize: 18)),
+            new Padding(padding: const EdgeInsets.only(bottom: 5)),
+            new FutureBuilder<List>(
+              future: getData(),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) print(snapshot.error);
+                return snapshot.hasData
+                    ? new ItemList(list: snapshot.data)
+                    : new Center(
+                        child: new CircularProgressIndicator(),
+                      );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -60,6 +77,7 @@ class ItemList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new ListView.builder(
+      shrinkWrap: true,
       itemCount: list == null ? 0 : list.length,
       itemBuilder: (context, i) {
         return Container(
