@@ -12,7 +12,7 @@ class Search extends StatefulWidget {
 class _SearchState extends State<Search> {
   List<Post> _list = [];
   List<Post> _search = [];
-  var loading = false;
+  bool loading = false;
   Future<Null> fetchData() async {
     setState(() {
       loading = true;
@@ -41,7 +41,7 @@ class _SearchState extends State<Search> {
     }
 
     _list.forEach((f) {
-      if (f.judul.contains(text)) {
+      if (f.judul.toLowerCase().contains(text)) {
         _search.add(f);
       }
     });
@@ -115,10 +115,10 @@ class _SearchState extends State<Search> {
                                           fontSize: 16.0,
                                           fontWeight: FontWeight.bold),
                                     ),
-                                    // leading: new Image.memory(
-                                    //     base64Decode("${search.gambar}"),
-                                    //     height: 120,
-                                    //     width: 50),
+                                    leading: new Image.memory(
+                                        base64Decode("${search.gambar}"),
+                                        height: 120,
+                                        width: 50),
                                     subtitle: new Text(
                                         "Oleh : ${search.penulis}\nKategori : ${search.namakategori} \nDipost pada: ${search.tgl}"),
                                     dense: true,
@@ -150,10 +150,10 @@ class _SearchState extends State<Search> {
                                           fontSize: 16.0,
                                           fontWeight: FontWeight.bold),
                                     ),
-                                    // leading: new Image.memory(
-                                    //     base64Decode("${a.gambar}"),
-                                    //     height: 120,
-                                    //     width: 50),
+                                    leading: new Image.memory(
+                                        base64Decode("${a.gambar}"),
+                                        height: 120,
+                                        width: 50),
                                     subtitle: new Text(
                                         "Oleh : ${a.penulis}\nKategori : ${a.namakategori} \nDipost pada: ${a.tgl}"),
                                     dense: true,
