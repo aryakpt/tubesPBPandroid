@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:aurora/search.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import './detail.dart';
@@ -42,7 +43,7 @@ class _HomeState extends State<Home> {
             icon: new Icon(Icons.search),
             onPressed: () {
               Navigator.of(context).push(new MaterialPageRoute(
-                  builder: (BuildContext context) => new Kategori()));
+                  builder: (BuildContext context) => new Search()));
             },
           )
         ],
