@@ -61,6 +61,8 @@ class ListKategori extends StatelessWidget {
                   child: new ListTile(
                     title: new Text(list[i]['namakategori']),
                     leading: new Icon(Icons.category_rounded),
+                    // Image.memory(base64Decode(list[i]['gambar']),
+                    //   height: 120, width: 80),
                   ),
                 ),
               ),

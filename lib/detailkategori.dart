@@ -66,7 +66,8 @@ class DetailListKategori extends StatelessWidget {
                   padding: const EdgeInsets.all(5),
                   child: new ListTile(
                     title: new Text(list[i]['judul']),
-                    leading: new Icon(Icons.book),
+                    leading: Image.memory(base64Decode(list[i]['gambar']),
+                        height: 120, width: 50),
                     subtitle: new Text(
                         "Penulis : ${list[i]['penulis']}\nDipost pada : ${list[i]['tgl']}"),
                   ),
