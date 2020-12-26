@@ -21,7 +21,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   Future<List> getData() async {
     final response = await http
-        .get("http://10.0.2.2//WebDinamis/webservices/get_recent_post.php");
+        .get("http://10.0.2.2/WebDinamis/webservices/get_recent_post.php");
     return json.decode(response.body);
   }
 

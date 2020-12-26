@@ -14,7 +14,7 @@ class Detail extends StatefulWidget {
 class _DetailState extends State<Detail> {
   Future<List> getKomen() async {
     final response =
-        await http.get("http://10.0.2.2//WebDinamis/webservices/get_komen.php");
+        await http.get("http://10.0.2.2/WebDinamis/webservices/get_komen.php");
     return json.decode(response.body);
   }
 

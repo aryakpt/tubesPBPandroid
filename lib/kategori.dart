@@ -13,7 +13,7 @@ class Kategori extends StatefulWidget {
 class _KategoriState extends State<Kategori> {
   Future<List> getKategori() async {
     final response = await http
-        .get("http://10.0.2.2//WebDinamis/webservices/get_kategori.php");
+        .get("http://10.0.2.2/WebDinamis/webservices/get_kategori.php");
     return json.decode(response.body);
   }
 

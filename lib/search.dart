@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import './model.dart';
-import './detail.dart';
 
 class Search extends StatefulWidget {
   @override
