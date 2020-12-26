@@ -98,32 +98,23 @@ class _SearchState extends State<Search> {
                               final search = _search[i];
                               return Container(
                                 padding: EdgeInsets.all(10.0),
-                                child: new GestureDetector(
-                                  onTap: () => Navigator.of(context).push(
-                                      new MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              new Detail(
-                                                list: [],
-                                                index: i,
-                                              ))),
-                                  child: new Card(
-                                      child: new ListTile(
-                                    title: new Text(
-                                      search.judul,
-                                      textAlign: TextAlign.left,
-                                      style: new TextStyle(
-                                          fontSize: 16.0,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    leading: new Image.memory(
-                                        base64Decode("${search.gambar}"),
-                                        height: 120,
-                                        width: 50),
-                                    subtitle: new Text(
-                                        "Oleh : ${search.penulis}\nKategori : ${search.namakategori} \nDipost pada: ${search.tgl}"),
-                                    dense: true,
-                                  )),
-                                ),
+                                child: new Card(
+                                    child: new ListTile(
+                                  title: new Text(
+                                    search.judul,
+                                    textAlign: TextAlign.left,
+                                    style: new TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  leading: new Image.memory(
+                                      base64Decode("${search.gambar}"),
+                                      height: 120,
+                                      width: 50),
+                                  subtitle: new Text(
+                                      "Oleh : ${search.penulis}\nKategori : ${search.namakategori} \nDipost pada: ${search.tgl}"),
+                                  dense: true,
+                                )),
                               );
                             },
                           )
@@ -133,32 +124,23 @@ class _SearchState extends State<Search> {
                               final a = _list[i];
                               return Container(
                                 padding: EdgeInsets.all(10.0),
-                                child: new GestureDetector(
-                                  onTap: () => Navigator.of(context).push(
-                                      new MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              new Detail(
-                                                list: [],
-                                                index: i,
-                                              ))),
-                                  child: new Card(
-                                      child: new ListTile(
-                                    title: new Text(
-                                      a.judul,
-                                      textAlign: TextAlign.left,
-                                      style: new TextStyle(
-                                          fontSize: 16.0,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    leading: new Image.memory(
-                                        base64Decode("${a.gambar}"),
-                                        height: 120,
-                                        width: 50),
-                                    subtitle: new Text(
-                                        "Oleh : ${a.penulis}\nKategori : ${a.namakategori} \nDipost pada: ${a.tgl}"),
-                                    dense: true,
-                                  )),
-                                ),
+                                child: new Card(
+                                    child: new ListTile(
+                                  title: new Text(
+                                    a.judul,
+                                    textAlign: TextAlign.left,
+                                    style: new TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  leading: new Image.memory(
+                                      base64Decode("${a.gambar}"),
+                                      height: 120,
+                                      width: 50),
+                                  subtitle: new Text(
+                                      "Oleh : ${a.penulis}\nKategori : ${a.namakategori} \nDipost pada: ${a.tgl}"),
+                                  dense: true,
+                                )),
                               );
                             }))
           ]),
