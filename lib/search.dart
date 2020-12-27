@@ -59,7 +59,7 @@ class _SearchState extends State<Search> {
     return Scaffold(
         appBar: new AppBar(
           backgroundColor: Colors.yellow[800],
-          title: new Text("Searh"),
+          title: new Text("Search"),
         ),
         body: Container(
           child: Column(children: <Widget>[
